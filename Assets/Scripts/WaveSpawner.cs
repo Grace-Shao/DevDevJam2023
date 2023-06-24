@@ -50,7 +50,7 @@ public class WaveSpawner : MonoBehaviour
 
             // Attach Data to customerPrefab
             customerPrefab.CustomerData = randomCustomerType;
-            customerPrefab.FoodData = randomFoodChoice;
+            customerPrefab.FoodChoice = randomFoodChoice;
 
             // Choose a random spawn point
             Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];

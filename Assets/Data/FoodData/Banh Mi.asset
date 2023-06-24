@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Banh Mi
   value: 10
-  foodSprite: {fileID: 0}
+  foodSprite: {fileID: 21300000, guid: 8e60b0ca23e15514284cbac5b26eb639, type: 3}
