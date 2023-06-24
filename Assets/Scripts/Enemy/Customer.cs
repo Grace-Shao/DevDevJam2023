@@ -7,6 +7,10 @@ public class Customer : MonoBehaviour
     [SerializeField] private FoodData m_foodData;
     [SerializeField] private CustomerData m_customerData;
     [SerializeField] private CustomerHud m_customerHud;
+
+    [SerializeField] private static Score _score;
+    
+
     public CustomerData CustomerData
     {
         get { return m_customerData; }
@@ -33,11 +37,15 @@ public class Customer : MonoBehaviour
         {
             // Increment points to pointsystem based on m_foodData.value
             m_customerHud.Satisfied();
+            _score.scoreNum += 10;
+            Debug.Log("score incremented");
         }
         else
         {
             // Decrement points to pointsystem based on m_foodData.value
             m_customerHud.Unsatisfied();
+            _score.scoreNum -= 10;
+            Debug.Log("score decremented");
         }
 
         yield return new WaitForSeconds(1);
