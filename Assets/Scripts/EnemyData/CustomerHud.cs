@@ -10,6 +10,6 @@ public class CustomerHud : MonoBehaviour
     // This can be updated on impact of food given with a check mark or smthn
     private void Update()
     {
-        foodImage.sprite = attachedCustomer.FoodData.foodSprite;
+        foodImage.sprite = attachedCustomer.FoodChoice.foodSprite;
     }
 }

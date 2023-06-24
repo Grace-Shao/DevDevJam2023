@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoodProjectile : MonoBehaviour {
 
-    private FoodData foodData;
+    public FoodData foodData;
     private Rigidbody2D rigidBody;
 
     // Start is called before the first frame update
