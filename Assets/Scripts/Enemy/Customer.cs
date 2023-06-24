@@ -13,7 +13,7 @@ public class Customer : MonoBehaviour
         set { m_customerData = value; }
     }
 
-    public FoodData FoodData
+    public FoodData FoodChoice
     {
         get { return m_foodData; }
         set { m_foodData = value; }
