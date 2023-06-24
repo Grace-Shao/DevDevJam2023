@@ -7,7 +7,8 @@ public class Wave
 {
     public string waveName;
     public int noOfEnemies;
-    public GameObject[] typeOfEnemies;
+    public CustomerData[] typeOfCustomers;
+    public FoodData[] typesOfFood;
     public float spawnInterval; // how long it takes for enemy to spawn
 }
 

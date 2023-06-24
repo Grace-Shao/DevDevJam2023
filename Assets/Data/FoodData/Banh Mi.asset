@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a9b410668cb6141a60c3edeb8bf1af, type: 3}
   m_Name: Banh Mi
   m_EditorClassIdentifier: 
-  name: 
-  value: 
+  name: Banh Mi
+  value: 10
+  foodSprite: {fileID: 0}
