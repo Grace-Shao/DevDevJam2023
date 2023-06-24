@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5186438679119924482, guid: c052a810d31d6724eb401388b98adee3, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5186438679119924482, guid: c052a810d31d6724eb401388b98adee3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 398641320}
   - component: {fileID: 398641319}
   - component: {fileID: 398641318}
+  - component: {fileID: 398641321}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -288,13 +289,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398641317}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07, y: -4.05, z: 0}
-  m_LocalScale: {x: 14.61, y: 1, z: 1}
+  m_LocalPosition: {x: -0.82, y: -2.85, z: 0}
+  m_LocalScale: {x: 23.04, y: 0.57, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &398641321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398641317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6495ea094cd84a249b2089bf42762ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentNumOfEnemiesTouching: 0
+  maxEnemies: 3
 --- !u!1001 &416891241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,7 +511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &867861033
 PrefabInstance:
@@ -825,25 +840,24 @@ MonoBehaviour:
   waves:
   - waveName: Wave 1
     noOfEnemies: 5
-    typeOfEnemies:
-    - {fileID: 7038721858093064317, guid: c052a810d31d6724eb401388b98adee3, type: 3}
-    - {fileID: 7038721858093064317, guid: 9beb17af22ecd0c47a2e065ce0e132bc, type: 3}
+    typeOfCustomers: []
+    typesOfFood: []
     spawnInterval: 2
   - waveName: Wave 2
     noOfEnemies: 3
-    typeOfEnemies:
-    - {fileID: 7038721858093064317, guid: c052a810d31d6724eb401388b98adee3, type: 3}
-    - {fileID: 7038721858093064317, guid: 9beb17af22ecd0c47a2e065ce0e132bc, type: 3}
+    typeOfCustomers: []
+    typesOfFood: []
     spawnInterval: 1
   - waveName: Wave 3
     noOfEnemies: 1
-    typeOfEnemies:
-    - {fileID: 7038721858093064317, guid: 4b913d94dbffb4c40aca6a6a5155a3a5, type: 3}
+    typeOfCustomers: []
+    typesOfFood: []
     spawnInterval: 1
   spawnPoints:
   - {fileID: 1256283068}
   - {fileID: 1295457533}
   - {fileID: 570453236}
+  customerPrefab: {fileID: 0}
 --- !u!1 &2107305007
 GameObject:
   m_ObjectHideFlags: 0
