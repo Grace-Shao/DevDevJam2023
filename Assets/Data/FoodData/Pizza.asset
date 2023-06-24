@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pizza
   value: 6
-  foodSprite: {fileID: 0}
+  foodSprite: {fileID: 21300000, guid: ebba46729303f814ba0ffeb50b66fc27, type: 3}
