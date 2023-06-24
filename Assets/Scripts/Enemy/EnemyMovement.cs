@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public int moveSpeed = 5;
+    private SpaceBounds bounds;
+    private Vector3 roamingPoint;
+    public float moveSpeed = 1f;
+    private float timer = 3;
     private bool isMoving;
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        bounds = transform.parent.GetComponentInChildren<GenericSpace>().GetBounds();
+        ChangeRoamingPoint();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        gameObject.transform.position += -transform.up * moveSpeed * Time.deltaTime;
+    void Update() {
+        transform.position = Vector3.MoveTowards(transform.position, roamingPoint, moveSpeed / 100f);
+        if (timer <= 0) { ChangeRoamingPoint(); timer = Random.Range(1f, 3f); } 
+        else timer -= Time.deltaTime;
+    }
+
+    private void ChangeRoamingPoint() {
+        roamingPoint = new Vector3(Random.Range(bounds.leftX, bounds.rightX), Random.Range(bounds.bottomY, bounds.topY), transform.position.z);
     }
 }
