@@ -16,6 +16,7 @@ public class WaveSpawner : MonoBehaviour
 {
     public Wave[] waves;
     public Transform[] spawnPoints;
+    [SerializeField] private Customer customerPrefab;
 
     private Wave currentWave; // current wave and int (1st, 2nd, or 3rd wave..)
     private int currentWaveNumber;
@@ -43,10 +44,18 @@ public class WaveSpawner : MonoBehaviour
     {
         if (canSpawn && nextSpawnTime < Time.time) //Time.time = time passed in seconds, since game start [to check time interval of spawn]
         {
-            GameObject randomEnemy = currentWave.typeOfEnemies[Random.Range(0, currentWave.typeOfEnemies.Length)];
-            // choose a random spawnpt
+            // Data Chosen At Random
+            CustomerData randomCustomerType = currentWave.typeOfCustomers[Random.Range(0, currentWave.typeOfCustomers.Length)];
+            FoodData randomFoodChoice = currentWave.typesOfFood[Random.Range(0, currentWave.typesOfFood.Length)];
+
+            // Attach Data to customerPrefab
+            customerPrefab.CustomerData = randomCustomerType;
+            customerPrefab.FoodData = randomFoodChoice;
+
+            // Choose a random spawn point
             Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
+            Instantiate(customerPrefab.gameObject, randomPoint.position, Quaternion.identity);
+
             // only spawn the num we want to spawn
             currentWave.noOfEnemies--;
             // 12:03 timer for spawning next enem
