@@ -6,6 +6,7 @@ public class Customer : MonoBehaviour
 {
     [SerializeField] private FoodData m_foodData;
     [SerializeField] private CustomerData m_customerData;
+    [SerializeField] private CustomerHud m_customerHud;
     public CustomerData CustomerData
     {
         get { return m_customerData; }
@@ -22,19 +23,24 @@ public class Customer : MonoBehaviour
         var foodProj = collision.GetComponent<FoodProjectile>();
         if (foodProj != null) 
         {
-            ReactToFood(foodProj);
+            StartCoroutine(ReactToFood(foodProj));
         }
     }
     // TODO: Adjust Player Points using the Point System script based on the value of the food
-    private void ReactToFood(FoodProjectile foodProj)
+    private IEnumerator ReactToFood(FoodProjectile foodProj)
     {
         if (foodProj.foodData.name == m_foodData.name) 
-        { 
+        {
             // Increment points to pointsystem based on m_foodData.value
+            m_customerHud.Satisfied();
         }
         else
         {
             // Decrement points to pointsystem based on m_foodData.value
+            m_customerHud.Unsatisfied();
         }
+
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
     }
 }
