@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class FoodSelector : MonoBehaviour {
 
-    public event Action<Food> OnActiveFoodChange;
+    public event Action<FoodData> OnActiveFoodChange;
 
     private FoodStorage foodScript;
-    private List<Food> foodList;
+    private List<FoodData> foodList;
 
     void Start() {
         foodScript = GetComponent<FoodStorage>();
         foodList = foodScript.GetFoodList();
-        foreach (Food food in foodList) {
-            if (!food.unlocked) foodList.Remove(food);
-        }
+        //foreach (FoodData food in foodList) {
+        //    if (!food.unlocked) foodList.Remove(food);
+        //}
     }
 
     private void Update() {

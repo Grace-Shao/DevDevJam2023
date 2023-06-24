@@ -6,8 +6,8 @@ public class FoodStorage : MonoBehaviour {
 
     [SerializeField] private GameObject genericFood;
     [SerializeField] private float projectileSpeed;
-    [SerializeField] private List<Food> foodList;
-    private Food activeFood;
+    [SerializeField] private List<FoodData> foodList;
+    private FoodData activeFood;
 
     // Start is called before the first frame update
     void Start() {
@@ -16,7 +16,7 @@ public class FoodStorage : MonoBehaviour {
         activeFood = foodList[0];
     }
 
-    private void FoodStorage_OnActiveFoodChange(Food food) {
+    private void FoodStorage_OnActiveFoodChange(FoodData food) {
         SetActiveFood(food);
     }
 
@@ -24,8 +24,8 @@ public class FoodStorage : MonoBehaviour {
         ShootFood(spawnPosition, rotation);
     }
 
-    private Food FindFood(string name) {
-        foreach (Food food in foodList) {
+    private FoodData FindFood(string name) {
+        foreach (FoodData food in foodList) {
             if (food.name.ToLower() == name.ToLower()) return food;
         } Debug.LogWarning("No food named " + name + " was found.");
         return null;
@@ -33,18 +33,15 @@ public class FoodStorage : MonoBehaviour {
 
     private void ShootFood(Vector3 spawnPosition, Vector3 rotation) {
         var projectile = Instantiate(genericFood, spawnPosition, Quaternion.Euler(rotation));
-        var sprRenderer = projectile.GetComponentInChildren<SpriteRenderer>();
-        sprRenderer.transform.Rotate(new Vector3(0, 0, -90));
-        sprRenderer.sprite = activeFood.sprite;
         var projectileScript = projectile.AddComponent<FoodProjectile>();
-        projectileScript.Launch(projectileSpeed);
+        projectileScript.Launch(projectileSpeed, activeFood);
     }
 
-    public List<Food> GetFoodList() {
+    public List<FoodData> GetFoodList() {
         return foodList;
     }
 
-    public void SetActiveFood(Food activeFood) {
+    public void SetActiveFood(FoodData activeFood) {
         this.activeFood = activeFood;
     }
 
