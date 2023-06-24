@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6495ea094cd84a249b2089bf42762ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentNumOfEnemiesTouching: 0
+  currentNumOfEnemiesTouching: 5
   maxEnemies: 3
