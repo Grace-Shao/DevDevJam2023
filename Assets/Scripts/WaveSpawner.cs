@@ -20,16 +20,17 @@ public class WaveSpawner : MonoBehaviour
     private int currentWaveNumber;
     private float nextSpawnTime; // time it takes to spawn next enem
 
-    private bool canSpawn = true;
+    private bool canSpawn = true; // helps stop spawning for a while, go to the next wave
 
     private void Update()
     {
         // takes a wave from waves and makes it currentWave
         currentWave = waves[currentWaveNumber];
         SpawnWave();
-        // GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Customer");
+        // 13:00 keeps track of how many enemies been spawn
+        GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Customer");
         // diff
-        if (!canSpawn)
+        if (totalEnemies.Length == 0 && !canSpawn && currentWaveNumber + 1 != waves.Length) 
         {
             currentWaveNumber++;
             canSpawn = true;
