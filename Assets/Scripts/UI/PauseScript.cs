@@ -18,7 +18,7 @@ public class PauseScript : MonoBehaviour
         }
     }
     #endregion
-    private CanvasGroup m_canvasGroup;
+    [SerializeField] private GameObject m_pauseGameObject;
 
     private bool m_paused;
     public bool IsPaused => m_paused;
@@ -27,7 +27,6 @@ public class PauseScript : MonoBehaviour
     #endregion 
     private void Start()
     {
-        m_canvasGroup = GetComponent<CanvasGroup>();
         UnPauseGame();
     }
     private void Update()
@@ -39,16 +38,16 @@ public class PauseScript : MonoBehaviour
     }
     public void PauseGame()
     {
+        m_pauseGameObject.SetActive(true);
         m_paused = true;
-        Time.timeScale = 0f;
-        m_canvasGroup.alpha = 1f;
+        Time.timeScale = 0f;  
         AudioManager.Instance.PauseVolume();
     }
     public void UnPauseGame()
     {
+        m_pauseGameObject.SetActive(false);
         m_paused = false;
         Time.timeScale = 1f;
-        m_canvasGroup.alpha = 0f;
         AudioManager.Instance.UnPauseVolume();
     }
     public void TogglePause()

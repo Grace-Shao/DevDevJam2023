@@ -63,7 +63,9 @@ public class WaveSpawner : MonoBehaviour
                 //Boss Wave
                 DemandRandomFoods(Random.Range(9, 12), bossPrefab.GetComponent<Boss>().FoodRequirements);
                 randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                bossPrefab.GetComponent<BossMovement>().rushPointObject = CarScript.Instance.gameObject;
                 Instantiate(bossPrefab.gameObject, randomPoint.position, Quaternion.identity, transform.parent);
+                
             }
             else
             {
@@ -86,6 +88,7 @@ public class WaveSpawner : MonoBehaviour
             nextSpawnTime = Time.time + currentWave.spawnInterval;
             if (currentWave.noOfEnemies == 0)
             {
+                WaveBroadcast.Instance.BroadcastWave(currentWave.waveName);
                 GenerateWave();
                 canSpawn = false;
             }
@@ -95,47 +98,48 @@ public class WaveSpawner : MonoBehaviour
     private void GenerateWave() {
         waveCount++;
         var wave = new Wave();
-
+        wave.waveName = "Wave " + waveCount;
+        enemiesPerWave += 2;
+        wave.noOfEnemies = enemiesPerWave;
+        spawnMultiplier += 0.05f;
+        wave.spawnInterval = 2f - 1.5f * spawnMultiplier;
+        for (int i = 0; i < possibleCustomers.Count; i++)
+        {
+            if (waveCount + 1 >= i) wave.typeOfCustomers.Add(possibleCustomers[i]);
+            else break;
+        }
+        for (int i = 0; i < possibleFood.Count; i++)
+        {
+            if (waveCount + 2 >= i) wave.typesOfFood.Add(possibleFood[i]);
+            else break;
+        }
+        for (int i = 0; i < wave.typesOfFood.Count; i++)
+        {
+            wave.foodWeights.Add(Random.Range(1, 5));
+        }
+        for (int i = 1; i < wave.foodWeights.Count; i++)
+        {
+            wave.foodWeights[i] += wave.foodWeights[i - 1];
+        }
         if (waveCount % 5 == 0)
         {
             //Boss Wave
             wave.waveName = "Boss Wave " + (waveCount / 5);
             wave.noOfEnemies = (waveCount / 5);
-        } 
-        else
-        {
-            wave.waveName = "Wave " + waveCount;
-            enemiesPerWave += 2;
-            wave.noOfEnemies = enemiesPerWave;
-            spawnMultiplier += 0.05f;
-            wave.spawnInterval = 2f - 1.5f * spawnMultiplier;
-            for (int i = 0; i < possibleCustomers.Count; i++)
-            {
-                if (waveCount + 1 >= i) wave.typeOfCustomers.Add(possibleCustomers[i]);
-                else break;
-            }
-            for (int i = 0; i < possibleFood.Count; i++)
-            {
-                if (waveCount + 2 >= i) wave.typesOfFood.Add(possibleFood[i]);
-                else break;
-            }
-            for (int i = 0; i < wave.typesOfFood.Count; i++)
-            {
-                wave.foodWeights.Add(Random.Range(1, 5));
-            }
-            for (int i = 1; i < wave.foodWeights.Count; i++)
-            {
-                wave.foodWeights[i] += wave.foodWeights[i - 1];
-            }
         }
-    
+
         currentWave = wave;
     }
     private void DemandRandomFoods(int size, Dictionary<FoodData, int> foodRequire)
     {
         for (int i = 0; i < size; i++)
         {
-            foodRequire[DemandRandomFood()]++;
+            var food = DemandRandomFood();
+            if (!foodRequire.ContainsKey(food)) 
+            {
+                foodRequire.Add(food, 0);
+            }
+            foodRequire[food]++;
         }
     }
     private FoodData DemandRandomFood()

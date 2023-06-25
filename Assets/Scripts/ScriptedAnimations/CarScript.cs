@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CarScript : MonoBehaviour {
+    #region Singleton
+    private static CarScript m_instance;
+    public static CarScript Instance
+    {
+        get 
+        { 
+            if (m_instance == null)
+            {
+                m_instance = FindObjectOfType<CarScript>();
+            }
+            return m_instance; 
+        }
+    }
+    #endregion
     [SerializeField] private float rotationSpeed = -2f;
     [SerializeField] private Transform[] wheels;
     private float yCarAnchor;

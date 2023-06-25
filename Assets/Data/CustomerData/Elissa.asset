@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Elissa
   m_EditorClassIdentifier: 
   name: Elissa
-  timeTillAngry: 0
+  timeTillAngry: 20
   customerSprite: {fileID: 21300000, guid: be0c66474d2fd2243b1966a5de8dfc3c, type: 3}
+  isMale: 0

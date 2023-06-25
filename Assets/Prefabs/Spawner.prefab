@@ -62,7 +62,7 @@ MonoBehaviour:
   - {fileID: 7235815470007570615}
   - {fileID: 7235815470202917738}
   customerPrefab: {fileID: 5960651990591643781, guid: d4faf36e874c9304aa6d3e27693955a9, type: 3}
-  bossPrefab: {fileID: 9081355529568560455, guid: 67cd765b41642fe42ae05562f147f401, type: 3}
+  bossPrefab: {fileID: 8439631780038340914, guid: 67cd765b41642fe42ae05562f147f401, type: 3}
   possibleCustomers:
   - {fileID: 11400000, guid: b64c16b2bc6ae244ebb2437ceeb2a06c, type: 2}
   - {fileID: 11400000, guid: a02d6bc323bc2334e8cea0b35c33442e, type: 2}

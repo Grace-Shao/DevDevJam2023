@@ -7,8 +7,21 @@ public class Boss : Customer
 {
     private Dictionary<FoodData, int> foodRequirements = new Dictionary<FoodData, int>();
     public Dictionary<FoodData, int> FoodRequirements => foodRequirements;
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        var foodProj = collision.GetComponent<FoodProjectile>();
+        if (foodProj != null)
+        {
+            foreach (Collider2D comp in GetComponents<Collider2D>()) Destroy(comp);
+            if (!reacted)
+            {
+                StartCoroutine(ReactToFood(foodProj));
+            }
+        }
+    }
     protected override IEnumerator ReactToFood(FoodProjectile foodProj)
     {
+        Debug.Log("Reacted to " + foodProj.name);
         if (foodRequirements.ContainsKey(foodProj.foodData))
         {
             // Increment points to pointsystem based on m_foodData.value
@@ -29,6 +42,8 @@ public class Boss : Customer
 
         if (foodRequirements.Count <= 0)
         {
+            Debug.Log("DIES");
+            reacted = true;
             m_customerHud.Satisfied();
             yield return new WaitForSeconds(0.9f);
             while (transform.localScale != Vector3.zero)

@@ -9,6 +9,9 @@ public class Customer : MonoBehaviour
     [SerializeField] protected CustomerHud m_customerHud;
     [SerializeField] protected SpriteRenderer m_customerRenderer;
 
+    private float timeLeftTillAngry;
+    public float TimeLeftTillAngry => timeLeftTillAngry;
+
     protected bool reacted; // Lazy boolean go brrrrr;
 
     private enum LineType {
@@ -28,6 +31,8 @@ public class Customer : MonoBehaviour
         lineBank[LineType.FemalePositive] = new[] { "FemaleP1", "FemaleP2", "FemaleP3", "FemaleP4" };
         lineBank[LineType.FemaleNegative] = new[] { "FemaleN1", "FemaleN2" };
         lineBank[LineType.FemaleTimer] = new[] { "FemaleT1", "FemaleT2" };
+
+        timeLeftTillAngry = m_customerData.timeTillAngry;
     }
 
     public CustomerData CustomerData
@@ -44,9 +49,16 @@ public class Customer : MonoBehaviour
     private void Update()
     {
         m_customerRenderer.sprite = m_customerData.customerSprite;
+        timeLeftTillAngry -= Time.deltaTime * 2;
+
+        if (timeLeftTillAngry <= 0 && !reacted)
+        {
+            reacted = true;
+            StartCoroutine(ReactToFood(null));
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         var foodProj = collision.GetComponent<FoodProjectile>();
         if (foodProj != null) 
@@ -60,7 +72,7 @@ public class Customer : MonoBehaviour
     }
     protected virtual IEnumerator ReactToFood(FoodProjectile foodProj)
     {
-        if (foodProj.foodData.name == m_foodData.name) 
+        if (foodProj != null && foodProj.foodData.name == m_foodData.name) 
         {
             // Increment points to pointsystem based on m_foodData.value
             PlayVoiceline(true);
@@ -72,7 +84,7 @@ public class Customer : MonoBehaviour
             // Decrement points to pointsystem based on m_foodData.value
             PlayVoiceline(false);
             m_customerHud.Unsatisfied();
-            Score.Instance.SCORE -= foodProj.foodData.value;
+            Score.Instance.SCORE -= m_foodData.value;
         }
 
         // Poof after 0.9 seconds of satisfication

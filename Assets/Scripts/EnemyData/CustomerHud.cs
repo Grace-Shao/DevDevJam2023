@@ -7,6 +7,7 @@ public class CustomerHud : MonoBehaviour
     [SerializeField] private Image foodImage;
     [SerializeField] private Sprite satisfied;
     [SerializeField] private Sprite unsatisfied;
+    [SerializeField] private Image angerBar;
 
     private Vector3 imageScale;
     private float scaleSpeed = 0.25f;
@@ -28,6 +29,7 @@ public class CustomerHud : MonoBehaviour
     }
 
     private void Update() {
+        angerBar.fillAmount = attachedCustomer.TimeLeftTillAngry / attachedCustomer.CustomerData.timeTillAngry;
         switch (state) {
             case State.Downscale:
                 foodImage.transform.localScale = Vector3.MoveTowards(foodImage.transform.localScale, Vector3.zero, scaleSpeed);
