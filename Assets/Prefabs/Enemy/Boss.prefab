@@ -66,13 +66,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b076158c39fc54f84b7c215ff5bfeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requireFoods:
-  - food: {fileID: 0}
-    requiredAmount: 0
-  - food: {fileID: 0}
-    requiredAmount: 0
-  - food: {fileID: 0}
-    requiredAmount: 0
+  m_foodData: {fileID: 0}
+  m_customerData: {fileID: 11400000, guid: 57a61cd3493d6a8408e327ef8b88b894, type: 2}
+  m_customerHud: {fileID: 0}
+  m_customerRenderer: {fileID: 8439631781559761682}
 --- !u!61 &3647645639618081306
 BoxCollider2D:
   m_ObjectHideFlags: 0
