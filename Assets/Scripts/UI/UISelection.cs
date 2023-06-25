@@ -5,7 +5,10 @@ using UnityEngine.UI;
 public class UISelection : MonoBehaviour
 {
     [SerializeField] private Image[] foodList;
+    [SerializeField] private Sprite hasAmmoSprite;
+    [SerializeField] private Sprite noAmmoSprite;
     private int currIdx;
+    
     private void Start()
     {
         MarkFoodItem(0);
@@ -24,6 +27,9 @@ public class UISelection : MonoBehaviour
             currIdx = (currIdx - 1) < 0 ? foodList.Length - 1 : currIdx - 1;
             MarkFoodItem(currIdx);
         }
+
+        if (FoodStorage.Instance.FoodList[currIdx].ammo <= 0) foodList[currIdx].sprite = noAmmoSprite;
+        else foodList[currIdx].sprite = hasAmmoSprite;
 
         //// Keybind Function
         //for (int i = 0; i < foodList.Length; i++)
