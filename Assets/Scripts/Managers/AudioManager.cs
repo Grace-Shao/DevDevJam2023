@@ -37,18 +37,18 @@ public class AudioManager : MonoBehaviour {
                 musicSource.clip = sound.clip;
                 musicSource.Play();
                 return;
-            } Debug.LogWarning("No music clip named " + name + " was found.");
-        }
+            } 
+        } Debug.LogWarning("No music clip named " + name + " was found.");
     }
 
-    public void PlaySFX(string name, float pitchVar) {
+    public void PlaySFX(string name, float pitchVar = 0) {
         foreach (Sound sound in sfxList) {
             if (sound.name == name) {
                 sfxSource.PlayOneShot(sound.clip);
                 sfxSource.pitch = 1 + Random.Range(-pitchVar, pitchVar);
                 return;
-            } Debug.LogWarning("No sound clip named " + name + " was found.");
-        }
+            } 
+        } Debug.LogWarning("No sound clip named " + name + " was found.");
     }
 
     public void SetMusicVolume(float musicVolume) {

@@ -15,3 +15,4 @@ MonoBehaviour:
   name: BigBoi
   timeTillAngry: 0
   customerSprite: {fileID: 21300000, guid: 24c95a22566d8444fb778c3a1a4aa370, type: 3}
+  isMale: 1
