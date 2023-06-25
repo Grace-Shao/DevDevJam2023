@@ -30,6 +30,11 @@ public class Score : MonoBehaviour
         get { return _scoreNum; }
         set { _scoreNum = value; }
     }
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+    public int HighScore => highestScore;
     // Update is called once per frame
     void Update()
     {
