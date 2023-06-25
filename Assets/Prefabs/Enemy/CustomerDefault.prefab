@@ -267,7 +267,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: be0c66474d2fd2243b1966a5de8dfc3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -338,7 +338,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6339031553893846749}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -363,8 +363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6000b33fd4a9d749b194030e9144c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_foodData: {fileID: 11400000, guid: 7628fa50c957b7f499ea08d9462269e6, type: 2}
-  m_customerData: {fileID: 11400000, guid: 24cac5ed96bca4744bca1aa5e0aaa257, type: 2}
+  m_foodData: {fileID: 11400000, guid: ff2763c0994b8934daa064a6a726ef6e, type: 2}
+  m_customerData: {fileID: 11400000, guid: a02d6bc323bc2334e8cea0b35c33442e, type: 2}
   m_customerHud: {fileID: 1237805438705858901}
   m_customerRenderer: {fileID: 6948813102721279470}
 --- !u!61 &7033308033605584555
