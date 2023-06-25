@@ -10,8 +10,10 @@ public class TransitionManager : MonoBehaviour {
 
     private CanvasGroup canvas;
     private float targetAlpha;
+    private float transitionSpeed = 2f;
 
     private void Awake() {
+        DontDestroyOnLoad(gameObject);
         if (Instance != null && Instance != this) {
             Destroy(this);
         } else {
@@ -27,8 +29,8 @@ public class TransitionManager : MonoBehaviour {
 
     private void Update() {
         if (canvas.alpha != targetAlpha) {
-            if (canvas.alpha < targetAlpha) canvas.alpha = Mathf.Min(canvas.alpha + Time.deltaTime, targetAlpha);
-            else canvas.alpha = Mathf.Max(canvas.alpha - Time.deltaTime, targetAlpha);
+            if (canvas.alpha < targetAlpha) canvas.alpha = Mathf.Min(canvas.alpha + Time.deltaTime * transitionSpeed, targetAlpha);
+            else canvas.alpha = Mathf.Max(canvas.alpha - Time.deltaTime * transitionSpeed, targetAlpha);
         }
     }
 
@@ -37,10 +39,12 @@ public class TransitionManager : MonoBehaviour {
         if (sceneID > 0) StartCoroutine(ILoadScene(sceneID));
     }
 
-    IEnumerator ILoadScene(int sceneID, bool fade = false) {
+    IEnumerator ILoadScene(int sceneID, bool fade = true) {
         if (fade) {
             FadeOut();
             while (canvas.alpha != targetAlpha) yield return null;
+            var delay = 0.25f;
+            while (delay > 0) { delay -= Time.deltaTime; yield return null; }
         } yield return SceneManager.LoadSceneAsync(sceneID);
         if (fade) {
             FadeIn();

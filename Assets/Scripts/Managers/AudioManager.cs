@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour {
     private float sfxVolume = 1;
 
     private void Awake() {
+        DontDestroyOnLoad(gameObject);
         if (Instance != null && Instance != this) {
             Destroy(this);
         } else {
