@@ -128,6 +128,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8790853445305695027, guid: c793dd1fc8624254bafa5610418dfe00, type: 3}
   m_PrefabInstance: {fileID: 2051972293}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &758572953
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758572949}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.59, y: 3.22}
+    newSize: {x: 6.59, y: 3.22}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.59, y: 3.22}
+  m_EdgeRadius: 0
 --- !u!1 &1857592629
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,5 +354,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8439631781559761682, guid: 67cd765b41642fe42ae05562f147f401, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 24c95a22566d8444fb778c3a1a4aa370, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67cd765b41642fe42ae05562f147f401, type: 3}
