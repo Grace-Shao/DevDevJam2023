@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 264361008553792472}
   - component: {fileID: 8940087009472096699}
   - component: {fileID: 5960651990591643781}
+  - component: {fileID: 7033308033605584555}
   m_Layer: 0
   m_Name: CustomerDefault
   m_TagString: Customer
@@ -381,6 +382,32 @@ MonoBehaviour:
   m_foodData: {fileID: 11400000, guid: 7628fa50c957b7f499ea08d9462269e6, type: 2}
   m_customerData: {fileID: 11400000, guid: 24cac5ed96bca4744bca1aa5e0aaa257, type: 2}
   m_customerHud: {fileID: 1237805438705858901}
+--- !u!61 &7033308033605584555
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6339031553893846749}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &9138945026327885446
 GameObject:
   m_ObjectHideFlags: 0
