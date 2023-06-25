@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1889487145994429419}
   - component: {fileID: 1889487145994429418}
   - component: {fileID: 1889487145994429413}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HoldBackCustomerLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}

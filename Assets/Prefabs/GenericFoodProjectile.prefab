@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6982299367951243772}
   - component: {fileID: 2222272615310047596}
   - component: {fileID: 4330386708886632117}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GenericFoodProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6386433318039904956}
   - component: {fileID: 346101402236050681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FoodSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
