@@ -6,6 +6,8 @@ public class FoodProjectile : MonoBehaviour {
 
     public FoodData foodData;
     private Rigidbody2D rigidBody;
+    private Transform target;
+    private float speed;
 
     // Start is called before the first frame update
     public void Launch(float speed, FoodData foodData) {
@@ -15,6 +17,11 @@ public class FoodProjectile : MonoBehaviour {
         sprRenderer.transform.Rotate(new Vector3(0, 0, -90));
         sprRenderer.sprite = foodData.foodSprite;
         this.foodData = foodData;
+        this.speed = speed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        target = collision.gameObject.transform;
     }
 
     // Update is called once per frame
@@ -22,6 +29,13 @@ public class FoodProjectile : MonoBehaviour {
         if (rigidBody.position.x > 24.1 || rigidBody.position.y > 12.1) {
             Score.Instance.SCORE -= 2;
             Destroy(gameObject);
+        } if (target) {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed/2);
+            transform.localScale = Vector3.MoveTowards(transform.localScale, new Vector3(0,0, transform.localScale.z), 0.05f);
+            if (transform.localScale == new Vector3(0, 0, transform.localScale.z)) {
+                // Add particle effects;
+                Destroy(gameObject);
+            }
         }
     }
 }
