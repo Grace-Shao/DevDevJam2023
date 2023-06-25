@@ -363,7 +363,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &5960651990591643781
@@ -378,8 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6000b33fd4a9d749b194030e9144c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_foodData: {fileID: 0}
-  m_customerData: {fileID: 0}
+  m_foodData: {fileID: 11400000, guid: 7628fa50c957b7f499ea08d9462269e6, type: 2}
+  m_customerData: {fileID: 11400000, guid: 24cac5ed96bca4744bca1aa5e0aaa257, type: 2}
   m_customerHud: {fileID: 1237805438705858901}
 --- !u!1 &9138945026327885446
 GameObject:
