@@ -19,6 +19,9 @@ public class FoodProjectile : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        if (rigidBody.position.x > 24.1 || rigidBody.position.y > 12.1) {
+            Score.Instance.SCORE -= 2;
+            Destroy(gameObject);
+        }
     }
 }
