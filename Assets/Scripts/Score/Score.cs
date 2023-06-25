@@ -32,6 +32,9 @@ public class Score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _scoreText.SetText($"Money: ${_scoreNum}");
+        if (_scoreNum > 0) _scoreText.color = Color.green;
+        else if (_scoreNum < 0) _scoreText.color = Color.red;
+        else _scoreText.color = Color.white;
+        _scoreText.SetText($"{_scoreNum}");
     }
 }

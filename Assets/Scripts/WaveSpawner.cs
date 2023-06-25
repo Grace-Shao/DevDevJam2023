@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 [System.Serializable] // a class or a struct can be serialized
 
@@ -9,6 +10,7 @@ public class Wave
     public int noOfEnemies;
     public CustomerData[] typeOfCustomers;
     public FoodData[] typesOfFood;
+    public int[] foodWeights;
     public float spawnInterval; // how long it takes for enemy to spawn
 }
 
@@ -23,6 +25,19 @@ public class WaveSpawner : MonoBehaviour
     private float nextSpawnTime; // time it takes to spawn next enem
 
     private bool canSpawn = true; // helps stop spawning for a while, go to the next wave
+
+    private void Start()
+    {
+        // Initializing each wave's weights :p
+        foreach (Wave wave in waves)
+        {
+            for (int i = 1; i < wave.foodWeights.Length; i++)
+            {
+                wave.foodWeights[i] += wave.foodWeights[i - 1];
+            }
+        }
+        
+    }
 
     private void Update()
     {
@@ -46,7 +61,7 @@ public class WaveSpawner : MonoBehaviour
         {
             // Data Chosen At Random
             CustomerData randomCustomerType = currentWave.typeOfCustomers[Random.Range(0, currentWave.typeOfCustomers.Length)];
-            FoodData randomFoodChoice = currentWave.typesOfFood[Random.Range(0, currentWave.typesOfFood.Length)];
+            FoodData randomFoodChoice = DemandRandomFood();
 
             // Attach Data to customerPrefab
             customerPrefab.CustomerData = randomCustomerType;
@@ -65,5 +80,15 @@ public class WaveSpawner : MonoBehaviour
                 canSpawn = false;
             }
         }
+    }
+
+    private FoodData DemandRandomFood()
+    {
+        int randomVal = Random.Range(0, currentWave.foodWeights[currentWave.foodWeights.Length - 1]);
+        for (int i = 0; i < currentWave.foodWeights.Length; i++)
+        {
+            if (randomVal <= currentWave.foodWeights[i]) return currentWave.typesOfFood[i];
+        }
+        return currentWave.typesOfFood[currentWave.foodWeights.Length - 1];
     }
 }
