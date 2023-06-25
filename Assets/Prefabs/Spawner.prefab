@@ -52,34 +52,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97813c7e1f804924bb39a2bec8c80645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
-  - waveName: Wave 1
-    noOfEnemies: 5
-    typeOfCustomers:
-    - {fileID: 11400000, guid: 24cac5ed96bca4744bca1aa5e0aaa257, type: 2}
-    typesOfFood:
-    - {fileID: 11400000, guid: ff2763c0994b8934daa064a6a726ef6e, type: 2}
-    - {fileID: 11400000, guid: 164ac674845ac22449a796bd2d900dcc, type: 2}
-    spawnInterval: 2
-  - waveName: Wave 2
-    noOfEnemies: 3
-    typeOfCustomers:
-    - {fileID: 11400000, guid: 24cac5ed96bca4744bca1aa5e0aaa257, type: 2}
-    typesOfFood:
-    - {fileID: 11400000, guid: ff2763c0994b8934daa064a6a726ef6e, type: 2}
-    - {fileID: 11400000, guid: 164ac674845ac22449a796bd2d900dcc, type: 2}
-    - {fileID: 11400000, guid: 7628fa50c957b7f499ea08d9462269e6, type: 2}
-    spawnInterval: 1
-  - waveName: Wave 3
-    noOfEnemies: 1
-    typeOfCustomers:
-    - {fileID: 11400000, guid: 24cac5ed96bca4744bca1aa5e0aaa257, type: 2}
-    typesOfFood:
-    - {fileID: 11400000, guid: ff2763c0994b8934daa064a6a726ef6e, type: 2}
-    - {fileID: 11400000, guid: 164ac674845ac22449a796bd2d900dcc, type: 2}
-    - {fileID: 11400000, guid: 7628fa50c957b7f499ea08d9462269e6, type: 2}
-    - {fileID: 11400000, guid: 6d036cb3857445a478507adfe3db2860, type: 2}
-    spawnInterval: 1
   spawnPoints:
   - {fileID: 5205246070197651770}
   - {fileID: 7235815470531287096}
@@ -90,6 +62,17 @@ MonoBehaviour:
   - {fileID: 7235815470007570615}
   - {fileID: 7235815470202917738}
   customerPrefab: {fileID: 5960651990591643781, guid: d4faf36e874c9304aa6d3e27693955a9, type: 3}
+  bossPrefab: {fileID: 9081355529568560455, guid: 67cd765b41642fe42ae05562f147f401, type: 3}
+  possibleCustomers:
+  - {fileID: 11400000, guid: b64c16b2bc6ae244ebb2437ceeb2a06c, type: 2}
+  - {fileID: 11400000, guid: a02d6bc323bc2334e8cea0b35c33442e, type: 2}
+  - {fileID: 11400000, guid: 24cac5ed96bca4744bca1aa5e0aaa257, type: 2}
+  possibleFood:
+  - {fileID: 11400000, guid: ff2763c0994b8934daa064a6a726ef6e, type: 2}
+  - {fileID: 11400000, guid: 8185f59eb31b27d49b3257be23998904, type: 2}
+  - {fileID: 11400000, guid: 7628fa50c957b7f499ea08d9462269e6, type: 2}
+  - {fileID: 11400000, guid: 164ac674845ac22449a796bd2d900dcc, type: 2}
+  - {fileID: 11400000, guid: 6d036cb3857445a478507adfe3db2860, type: 2}
 --- !u!1001 &5205246068512491253
 PrefabInstance:
   m_ObjectHideFlags: 0

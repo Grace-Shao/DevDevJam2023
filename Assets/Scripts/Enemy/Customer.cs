@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Customer : MonoBehaviour
 {
-    [SerializeField] private FoodData m_foodData;
-    [SerializeField] private CustomerData m_customerData;
-    [SerializeField] private CustomerHud m_customerHud;
-    [SerializeField] private SpriteRenderer m_customerRenderer;
+    [SerializeField] protected FoodData m_foodData;
+    [SerializeField] protected CustomerData m_customerData;
+    [SerializeField] protected CustomerHud m_customerHud;
+    [SerializeField] protected SpriteRenderer m_customerRenderer;
 
-    private bool reacted; // Lazy boolean go brrrrr;
+    protected bool reacted; // Lazy boolean go brrrrr;
 
     private enum LineType {
         MalePositive,
@@ -20,7 +20,7 @@ public class Customer : MonoBehaviour
         FemaleTimer
     } Dictionary<LineType, string[]> lineBank;
 
-    private void Start() {
+    protected virtual void Start() {
         lineBank = new Dictionary<LineType, string[]>();
         lineBank[LineType.MalePositive] = new[] { "MaleP1", "MaleP2", "MaleP3", "MaleP4" };
         lineBank[LineType.MaleNegative] = new[] { "MaleN1", "MaleN2" };
@@ -58,7 +58,7 @@ public class Customer : MonoBehaviour
             }
         }
     }
-    private IEnumerator ReactToFood(FoodProjectile foodProj)
+    protected virtual IEnumerator ReactToFood(FoodProjectile foodProj)
     {
         if (foodProj.foodData.name == m_foodData.name) 
         {
@@ -74,7 +74,9 @@ public class Customer : MonoBehaviour
             m_customerHud.Unsatisfied();
             Score.Instance.SCORE -= foodProj.foodData.value;
         }
-        yield return new WaitForSeconds(1);
+
+        // Poof after 0.9 seconds of satisfication
+        yield return new WaitForSeconds(0.9f);
         while (transform.localScale != Vector3.zero) {
             transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.zero, 0.15f);
             yield return null;
@@ -86,12 +88,12 @@ public class Customer : MonoBehaviour
     }
 
     // Version without argument is for timer;
-    private void PlayVoiceline() {
+    protected void PlayVoiceline() {
         var type = m_customerData.isMale ? LineType.MaleTimer : LineType.FemaleTimer;
         AudioManager.Instance.PlaySFX(lineBank[type][Random.Range(0, lineBank[type].Length)], 0.1f);
     }
     // Version with bool is for satisfied/unsatisfied
-    private void PlayVoiceline(bool satisfied) {
+    protected void PlayVoiceline(bool satisfied) {
         var type = LineType.MalePositive;
         if (m_customerData.isMale) {
             type = satisfied ? LineType.MalePositive : LineType.MaleNegative;

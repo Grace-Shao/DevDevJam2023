@@ -24,6 +24,7 @@ public class WaveSpawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
     [SerializeField] private Customer customerPrefab;
+    [SerializeField] private GameObject bossPrefab;
     [SerializeField] private List<CustomerData> possibleCustomers;
     [SerializeField] private List<FoodData> possibleFood;
 
@@ -56,17 +57,28 @@ public class WaveSpawner : MonoBehaviour
     {
         if (canSpawn && nextSpawnTime < Time.time) //Time.time = time passed in seconds, since game start [to check time interval of spawn]
         {
-            // Data Chosen At Random
-            CustomerData randomCustomerType = currentWave.typeOfCustomers[Random.Range(0, currentWave.typeOfCustomers.Count)];
-            FoodData randomFoodChoice = DemandRandomFood();
+            Transform randomPoint;
+            if (waveCount % 5 == 0)
+            {
+                //Boss Wave
+                DemandRandomFoods(Random.Range(9, 12), bossPrefab.GetComponent<Boss>().FoodRequirements);
+                randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                Instantiate(bossPrefab.gameObject, randomPoint.position, Quaternion.identity, transform.parent);
+            }
+            else
+            {
+                // Data Chosen At Random
+                CustomerData randomCustomerType = currentWave.typeOfCustomers[Random.Range(0, currentWave.typeOfCustomers.Count)];
+                FoodData randomFoodChoice = DemandRandomFood();
 
-            // Attach Data to customerPrefab
-            customerPrefab.CustomerData = randomCustomerType;
-            customerPrefab.FoodChoice = randomFoodChoice;
+                // Attach Data to customerPrefab
+                customerPrefab.CustomerData = randomCustomerType;
+                customerPrefab.FoodChoice = randomFoodChoice;
 
-            // Choose a random spawn point
-            Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(customerPrefab.gameObject, randomPoint.position, Quaternion.identity, transform.parent);
+                // Choose a random spawn point
+                randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+                Instantiate(customerPrefab.gameObject, randomPoint.position, Quaternion.identity, transform.parent);
+            }
 
             // only spawn the num we want to spawn
             currentWave.noOfEnemies--;
@@ -83,29 +95,49 @@ public class WaveSpawner : MonoBehaviour
     private void GenerateWave() {
         waveCount++;
         var wave = new Wave();
-        wave.waveName = "Wave " + waveCount;
-        enemiesPerWave += 2;
-        wave.noOfEnemies = enemiesPerWave;
-        spawnMultiplier += 0.05f;
-        wave.spawnInterval = 2f - 1.5f * spawnMultiplier;
-        for (int i = 0; i < possibleCustomers.Count; i++) {
-            if (waveCount + 1 >= i) wave.typeOfCustomers.Add(possibleCustomers[i]);
-            else break;
+
+        if (waveCount % 5 == 0)
+        {
+            //Boss Wave
+            wave.waveName = "Boss Wave " + (waveCount / 5);
+            wave.noOfEnemies = (waveCount / 5);
+        } 
+        else
+        {
+            wave.waveName = "Wave " + waveCount;
+            enemiesPerWave += 2;
+            wave.noOfEnemies = enemiesPerWave;
+            spawnMultiplier += 0.05f;
+            wave.spawnInterval = 2f - 1.5f * spawnMultiplier;
+            for (int i = 0; i < possibleCustomers.Count; i++)
+            {
+                if (waveCount + 1 >= i) wave.typeOfCustomers.Add(possibleCustomers[i]);
+                else break;
+            }
+            for (int i = 0; i < possibleFood.Count; i++)
+            {
+                if (waveCount + 2 >= i) wave.typesOfFood.Add(possibleFood[i]);
+                else break;
+            }
+            for (int i = 0; i < wave.typesOfFood.Count; i++)
+            {
+                wave.foodWeights.Add(Random.Range(1, 5));
+            }
+            for (int i = 1; i < wave.foodWeights.Count; i++)
+            {
+                wave.foodWeights[i] += wave.foodWeights[i - 1];
+            }
         }
-        for (int i = 0; i < possibleFood.Count; i++) {
-            if (waveCount + 2 >= i) wave.typesOfFood.Add(possibleFood[i]);
-            else break;
-        }
-        for (int i = 0; i < wave.typesOfFood.Count; i++) {
-            wave.foodWeights.Add(Random.Range(1, 5));
-        }
-        for (int i = 1; i < wave.foodWeights.Count; i++) {
-            wave.foodWeights[i] += wave.foodWeights[i - 1];
-        }
+    
         currentWave = wave;
-
     }
-
+    private void DemandRandomFoods(int size, Dictionary<FoodData, int> foodRequire)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            foodRequire[DemandRandomFood()]++;
+        }
+    }
     private FoodData DemandRandomFood()
     {
         int randomVal = Random.Range(0, currentWave.foodWeights[currentWave.foodWeights.Count - 1]);

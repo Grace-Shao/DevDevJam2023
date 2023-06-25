@@ -56,4 +56,9 @@ public class PauseScript : MonoBehaviour
         if (m_paused) UnPauseGame();
         else PauseGame();
     }
+    public void BackToMainMenu()
+    {
+        TransitionManager.Instance.LoadScene("Title");
+        UnPauseGame();
+    }
 }

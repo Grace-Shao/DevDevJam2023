@@ -15,7 +15,7 @@ public class TransitionManager : MonoBehaviour {
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         if (Instance != null && Instance != this) {
-            Destroy(this);
+            Destroy(gameObject);
         } else {
             Instance = this;
         }
@@ -36,7 +36,7 @@ public class TransitionManager : MonoBehaviour {
 
     public void LoadScene(string name) {
         var sceneID = FindSceneID(name);
-        if (sceneID > 0) StartCoroutine(ILoadScene(sceneID));
+        if (sceneID >= 0) StartCoroutine(ILoadScene(sceneID));
     }
 
     IEnumerator ILoadScene(int sceneID, bool fade = true) {

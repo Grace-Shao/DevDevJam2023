@@ -3,31 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : Customer
 {
-    [SerializeField] private RequireFood[] requireFoods;
     private Dictionary<FoodData, int> foodRequirements = new Dictionary<FoodData, int>();
-
-    private void Start()
-    {
-        foreach (var requiredFood in requireFoods) 
-        {
-            foodRequirements.Add(requiredFood.food, requiredFood.requiredAmount);
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        var foodProj = collision.GetComponent<FoodProjectile>();
-        if (foodProj != null)
-        {
-            StartCoroutine(ReactToFood(foodProj));
-        }
-    }
-    private IEnumerator ReactToFood(FoodProjectile foodProj)
+    public Dictionary<FoodData, int> FoodRequirements => foodRequirements;
+    protected override IEnumerator ReactToFood(FoodProjectile foodProj)
     {
         if (foodRequirements.ContainsKey(foodProj.foodData))
         {
             // Increment points to pointsystem based on m_foodData.value
+            PlayVoiceline(true);
             Score.Instance.SCORE += foodProj.foodData.value;
             foodRequirements[foodProj.foodData]--;
 
@@ -38,15 +23,24 @@ public class Boss : MonoBehaviour
         }
         else
         {
-            // Decrement points to pointsystem based on m_foodData.value
+            PlayVoiceline(false);
             Score.Instance.SCORE -= foodProj.foodData.value;
         }
 
         if (foodRequirements.Count <= 0)
         {
-            Destroy(gameObject.GetComponent<Collider2D>());
-            yield return new WaitForSeconds(1);
-            Destroy(gameObject);
+            m_customerHud.Satisfied();
+            yield return new WaitForSeconds(0.9f);
+            while (transform.localScale != Vector3.zero)
+            {
+                transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.zero, 0.15f);
+                yield return null;
+            }
+            var parSystem = GetComponentInChildren<ParticleSystem>();
+            var main = parSystem.main;
+            main.startColor = GetComponentInChildren<SpriteRenderer>().sprite.texture.GetPixel(50, 50);
+            parSystem.Play();
+            Destroy(gameObject, main.startLifetime.constant);
         }   
     }
 }
