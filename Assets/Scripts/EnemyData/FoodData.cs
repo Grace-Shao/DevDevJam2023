@@ -7,6 +7,6 @@ using UnityEngine;
 public class FoodData : ScriptableObject
 {
     public string name;
-    public string value;
+    public int value;
     public Sprite foodSprite;
 }
