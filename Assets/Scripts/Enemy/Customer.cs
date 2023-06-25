@@ -30,7 +30,7 @@ public class Customer : MonoBehaviour
         var foodProj = collision.GetComponent<FoodProjectile>();
         if (foodProj != null) 
         {
-            Destroy(gameObject.GetComponent<Collider2D>());
+            foreach (Collider2D comp in GetComponents<Collider2D>()) Destroy(comp);
             StartCoroutine(ReactToFood(foodProj));
         }
     }
@@ -49,6 +49,13 @@ public class Customer : MonoBehaviour
             Score.Instance.SCORE -= foodProj.foodData.value;
         }
         yield return new WaitForSeconds(1);
-        Destroy(gameObject);
+        while (transform.localScale != Vector3.zero) {
+            transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.zero, 0.15f);
+            yield return null;
+        } var parSystem = GetComponentInChildren<ParticleSystem>();
+        var main = parSystem.main;
+        main.startColor = GetComponentInChildren<SpriteRenderer>().sprite.texture.GetPixel(50, 50);
+        parSystem.Play();
+        Destroy(gameObject, main.startLifetime.constant);
     }
 }

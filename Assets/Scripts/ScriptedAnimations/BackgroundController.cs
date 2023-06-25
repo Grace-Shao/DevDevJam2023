@@ -11,6 +11,7 @@ public class BackgroundController : MonoBehaviour
     } [SerializeField] private BackgroundType backgroundType;
 
     [SerializeField] private float speedDamp;
+    [SerializeField] private int skipClusters = 1;
 
     private float width;
     private float startAnchor;
@@ -22,7 +23,7 @@ public class BackgroundController : MonoBehaviour
     void Start() {
         width = GetComponent<SpriteRenderer>().bounds.size.x;
         startAnchor = transform.position.x;
-        resetPointX = startAnchor - width;
+        resetPointX = startAnchor - width * skipClusters;
         rb = GetComponent<Rigidbody2D>();
         rb.AddRelativeForce(new Vector2(globalSpeed * speedDamp, 0));
     }
