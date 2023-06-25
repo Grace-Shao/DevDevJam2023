@@ -179,7 +179,39 @@ MonoBehaviour:
   musicList:
   - name: Main Theme
     clip: {fileID: 8300000, guid: b03e5a8c345d1e6428799f4df583b5a2, type: 3}
-  sfxList: []
+  sfxList:
+  - name: MaleP1
+    clip: {fileID: 8300000, guid: b2864e8ef9483c3439e8983ce62e9d4e, type: 3}
+  - name: MaleP2
+    clip: {fileID: 8300000, guid: a8f599843d946794990db011b7e6422e, type: 3}
+  - name: MaleP3
+    clip: {fileID: 8300000, guid: d5510d90627a6b543a3a2ce4d9a38b21, type: 3}
+  - name: MaleP4
+    clip: {fileID: 8300000, guid: cf20d3929e6e30a4198a30f16bd16851, type: 3}
+  - name: MaleN1
+    clip: {fileID: 8300000, guid: 2790c27fb9e42ba4298c2fa8da8f9707, type: 3}
+  - name: MaleN2
+    clip: {fileID: 8300000, guid: 91b60836d8d846d4899fa45ad47379b2, type: 3}
+  - name: MaleT1
+    clip: {fileID: 8300000, guid: dc576a8c3a3c9f84ba32f1d50a9affd7, type: 3}
+  - name: MaleT2
+    clip: {fileID: 8300000, guid: 397931019ab8bfa45a59363466f6a996, type: 3}
+  - name: FemaleP1
+    clip: {fileID: 8300000, guid: 8c77534c01e7c1d4883bc85278ece78f, type: 3}
+  - name: FemaleP2
+    clip: {fileID: 8300000, guid: c8f4ba826b422b643940695019af8c8f, type: 3}
+  - name: FemaleP3
+    clip: {fileID: 8300000, guid: 12b89ccf7dbf654438959f46ea6c3ff1, type: 3}
+  - name: FemaleP4
+    clip: {fileID: 8300000, guid: b70facfcdc1a68a4fa8a5f7956f80e6e, type: 3}
+  - name: FemaleN1
+    clip: {fileID: 8300000, guid: d27e06d6c2e515b41aa181ab19d89da0, type: 3}
+  - name: FemaleN2
+    clip: {fileID: 8300000, guid: 35e04671effb87a4baf7d495393a87f6, type: 3}
+  - name: FemaleT1
+    clip: {fileID: 8300000, guid: ae226807edd7458409e77ac6498062bc, type: 3}
+  - name: FemaleT2
+    clip: {fileID: 8300000, guid: 22a08251dbf4b514da38ab55f2ac2d11, type: 3}
 --- !u!1 &5005216184322745736
 GameObject:
   m_ObjectHideFlags: 0
