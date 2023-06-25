@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodSelector : MonoBehaviour {
+public class FoodSelectorLogic : MonoBehaviour {
 
     public event Action<FoodData> OnActiveFoodChange;
 
@@ -19,8 +19,7 @@ public class FoodSelector : MonoBehaviour {
     }
 
     private void Update() {
-        for (int i = 1; i <= 9; i++) {
-            if (i <= foodList.Count && Input.GetKey((i).ToString())) OnActiveFoodChange?.Invoke(foodList[i - 1]);
-        }
+
+        
     }
 }

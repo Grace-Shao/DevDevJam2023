@@ -12,7 +12,7 @@ public class FoodStorage : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         GetComponent<WeaponController>().OnShootFood += FoodStorage_OnShootFood;
-        GetComponent<FoodSelector>().OnActiveFoodChange += FoodStorage_OnActiveFoodChange;
+        GetComponent<FoodSelectorLogic>().OnActiveFoodChange += FoodStorage_OnActiveFoodChange;
         activeFood = foodList[0];
     }
 
