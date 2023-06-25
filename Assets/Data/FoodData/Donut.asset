@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Donut
   value: 2
-  foodSprite: {fileID: 21300000, guid: ed856acc4c0f49144b1fa484a9cb0ba9, type: 3}
+  foodSprite: {fileID: 21300000, guid: 8b899c28888d6434995d86fad684e5db, type: 3}

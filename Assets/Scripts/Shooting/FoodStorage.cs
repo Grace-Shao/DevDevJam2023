@@ -8,12 +8,19 @@ public class FoodStorage : MonoBehaviour {
     [SerializeField] private float projectileSpeed;
     [SerializeField] private List<FoodData> foodList;
     private FoodData activeFood;
+    private Dictionary<FoodData, int> foodStorage = new Dictionary<FoodData, int>();
+
 
     // Start is called before the first frame update
     void Start() {
         GetComponent<WeaponController>().OnShootFood += FoodStorage_OnShootFood;
         GetComponent<FoodSelectorLogic>().OnActiveFoodChange += FoodStorage_OnActiveFoodChange;
         activeFood = foodList[0];
+        
+        foreach (var food in foodList)
+        {
+            foodStorage.Add(food, 10);
+        }
     }
 
     private void FoodStorage_OnActiveFoodChange(FoodData food) {
@@ -21,7 +28,18 @@ public class FoodStorage : MonoBehaviour {
     }
 
     private void FoodStorage_OnShootFood(Vector3 spawnPosition, Vector3 rotation) {
+        if (foodStorage[activeFood] <= 0)
+        {
+            // Play Sound effect of being empty
+            return;
+        }
+
         ShootFood(spawnPosition, rotation);
+    }
+
+    private void FoodStorage_OnShootReload()
+    {
+
     }
 
     private FoodData FindFood(string name) {

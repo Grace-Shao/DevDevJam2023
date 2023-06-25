@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Burger
   value: 4
-  foodSprite: {fileID: 21300000, guid: afa4c47228ad2ba4c9857ff8f3c8aa83, type: 3}
+  foodSprite: {fileID: 21300000, guid: 4ee502a51c95c274982a5ebe3d97b960, type: 3}

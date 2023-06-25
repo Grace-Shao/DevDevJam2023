@@ -23,6 +23,11 @@ public class WeaponController : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) {
             OnShootFood?.Invoke(gunPoint.position, transform.eulerAngles);
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+
+        }
     }
 
     private void AlignToCursor(Vector2 mousePosition, Camera camera) {

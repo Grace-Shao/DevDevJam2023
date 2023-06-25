@@ -7,6 +7,7 @@ public class Customer : MonoBehaviour
     [SerializeField] private FoodData m_foodData;
     [SerializeField] private CustomerData m_customerData;
     [SerializeField] private CustomerHud m_customerHud;
+    [SerializeField] private SpriteRenderer m_customerRenderer;
 
     public CustomerData CustomerData
     {
@@ -17,6 +18,11 @@ public class Customer : MonoBehaviour
     {
         get { return m_foodData; }
         set { m_foodData = value; }
+    }
+
+    private void Update()
+    {
+        m_customerRenderer.sprite = m_customerData.customerSprite;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

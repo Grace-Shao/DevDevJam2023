@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodSelectorLogic : MonoBehaviour
-{
+public class FoodSelector : MonoBehaviour {
 
     public event Action<FoodData> OnActiveFoodChange;
 
@@ -13,8 +12,7 @@ public class FoodSelectorLogic : MonoBehaviour
 
     private int currIdx;
 
-    void Start()
-    {
+    void Start() {
         foodScript = GetComponent<FoodStorage>();
         foodList = foodScript.GetFoodList();
         //foreach (FoodData food in foodList) {
@@ -22,9 +20,7 @@ public class FoodSelectorLogic : MonoBehaviour
         //}
     }
 
-    private void Update()
-    {
-        // Scroll Wheel Function
+    private void Update() {
         float scrollWheelVal = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheelVal < 0)
         {
@@ -33,18 +29,17 @@ public class FoodSelectorLogic : MonoBehaviour
         }
         else if (scrollWheelVal > 0)
         {
-            currIdx = (currIdx - 1) < 0 ? foodList.Count - 1 : currIdx - 1;
+            currIdx = (currIdx - 1) % foodList.Count;
             OnActiveFoodChange(foodList[currIdx]);
         }
 
-        //// Keybind Function
-        //for (int i = 1; i <= 9; i++)
-        //{
-        //    if (i <= foodList.Count && Input.GetKey((i).ToString()))
-        //    {
-        //        currIdx = i - 1;
-        //        OnActiveFoodChange?.Invoke(foodList[i - 1]);
-        //    }
-        //}
+        for (int i = 1; i <= 9; i++) 
+        {
+            if (i <= foodList.Count && Input.GetKey((i).ToString())) 
+            {
+                currIdx = i - 1;
+                OnActiveFoodChange?.Invoke(foodList[i - 1]);
+            }
+        }
     }
 }
