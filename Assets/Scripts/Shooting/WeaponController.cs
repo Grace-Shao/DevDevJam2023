@@ -6,6 +6,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour {
 
     public event Action<Vector3, Vector3> OnShootFood;
+    public event Action OnReloadFood;
 
     [Range(0,360)]
     [SerializeField] float rotation;
@@ -26,7 +27,7 @@ public class WeaponController : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1))
         {
-
+            OnReloadFood?.Invoke();
         }
     }
 

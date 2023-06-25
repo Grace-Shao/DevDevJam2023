@@ -1,50 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FoodStorage : MonoBehaviour {
 
+    #region Singleton
+    private static FoodStorage m_instance;
+    public static FoodStorage Instance
+    {
+        get 
+        { 
+            if (m_instance == null)
+            {
+                m_instance = FindObjectOfType<FoodStorage>();
+            }
+            return m_instance; 
+        }
+    }
+    #endregion
+
     [SerializeField] private GameObject genericFood;
     [SerializeField] private float projectileSpeed;
-    [SerializeField] private List<FoodData> foodList;
-    private FoodData activeFood;
-    private Dictionary<FoodData, int> foodStorage = new Dictionary<FoodData, int>();
+    [SerializeField] private List<Food> foodList;
+    private Food activeFood;
 
+    public List<Food> FoodList { get { return foodList; } }
 
     // Start is called before the first frame update
     void Start() {
         GetComponent<WeaponController>().OnShootFood += FoodStorage_OnShootFood;
+        GetComponent<WeaponController>().OnReloadFood += FoodStorage_OnShootReload;
         GetComponent<FoodSelectorLogic>().OnActiveFoodChange += FoodStorage_OnActiveFoodChange;
-        activeFood = foodList[0];
         
-        foreach (var food in foodList)
-        {
-            foodStorage.Add(food, 10);
-        }
+        activeFood = foodList[0];
     }
 
-    private void FoodStorage_OnActiveFoodChange(FoodData food) {
-        SetActiveFood(food);
+    private void FoodStorage_OnActiveFoodChange(FoodData foodData) {
+        Food activeFood = null;
+        foreach (var chosenFood in foodList)
+        {
+            if (chosenFood.foodData == foodData)
+            {
+                activeFood = chosenFood;
+                break;
+            }
+        }
+        SetActiveFood(activeFood);
     }
 
     private void FoodStorage_OnShootFood(Vector3 spawnPosition, Vector3 rotation) {
-        if (foodStorage[activeFood] <= 0)
+        if (activeFood.ammo <= 0)
         {
             // Play Sound effect of being empty
             return;
         }
 
+        activeFood.ammo--;
         ShootFood(spawnPosition, rotation);
     }
 
     private void FoodStorage_OnShootReload()
     {
+        if (activeFood.currCooldown <= 0)
+        {
+            activeFood.currCooldown = activeFood.cooldown;
+            StartCoroutine(ReloadFood(activeFood));
+        }
+    }
 
+    private IEnumerator ReloadFood(Food chosenFood)
+    {
+        float tick = 0.01f;
+        while (chosenFood.currCooldown > 0)
+        {
+            yield return new WaitForSeconds(tick);
+            chosenFood.currCooldown -= tick;
+        }
+        chosenFood.ammo++;
     }
 
     private FoodData FindFood(string name) {
-        foreach (FoodData food in foodList) {
-            if (food.name.ToLower() == name.ToLower()) return food;
+        foreach (Food food in foodList) {
+            if (food.foodData.name.ToLower() == name.ToLower()) return food.foodData;
         } Debug.LogWarning("No food named " + name + " was found.");
         return null;
     }
@@ -52,14 +90,21 @@ public class FoodStorage : MonoBehaviour {
     private void ShootFood(Vector3 spawnPosition, Vector3 rotation) {
         var projectile = Instantiate(genericFood, spawnPosition, Quaternion.Euler(rotation));
         var projectileScript = projectile.AddComponent<FoodProjectile>();
-        projectileScript.Launch(projectileSpeed, activeFood);
+        projectileScript.Launch(projectileSpeed, activeFood.foodData);
     }
 
     public List<FoodData> GetFoodList() {
-        return foodList;
+        List<FoodData> newList = new List<FoodData>();
+
+        foreach (var food in foodList) 
+        {
+            newList.Add(food.foodData);
+        }
+
+        return newList;
     }
 
-    public void SetActiveFood(FoodData activeFood) {
+    public void SetActiveFood(Food activeFood) {
         this.activeFood = activeFood;
     }
 
@@ -70,7 +115,8 @@ public class FoodStorage : MonoBehaviour {
 
 [System.Serializable]
 public class Food {
-    public string name;
-    public Sprite sprite;
-    public bool unlocked;
+    public FoodData foodData;
+    public int ammo;
+    public float cooldown;
+    public float currCooldown;
 }

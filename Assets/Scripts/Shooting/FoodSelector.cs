@@ -6,15 +6,12 @@ using UnityEngine;
 public class FoodSelector : MonoBehaviour {
 
     public event Action<FoodData> OnActiveFoodChange;
-
-    private FoodStorage foodScript;
     private List<FoodData> foodList;
 
     private int currIdx;
 
     void Start() {
-        foodScript = GetComponent<FoodStorage>();
-        foodList = foodScript.GetFoodList();
+        foodList = FoodStorage.Instance.GetFoodList();
         //foreach (FoodData food in foodList) {
         //    if (!food.unlocked) foodList.Remove(food);
         //}

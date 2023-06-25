@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class UISelection : MonoBehaviour
     {
         // Scroll Wheel Function
         float scrollWheelVal = Input.GetAxis("Mouse ScrollWheel");
-        if (scrollWheelVal < 0) 
+        if (scrollWheelVal < 0)
         {
             currIdx = (currIdx + 1) % foodList.Length;
             MarkFoodItem(currIdx);
