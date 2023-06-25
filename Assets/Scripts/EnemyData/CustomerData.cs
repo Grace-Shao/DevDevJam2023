@@ -8,4 +8,5 @@ public class CustomerData : ScriptableObject
     public string name;
     public float timeTillAngry;
     public Sprite customerSprite;
+    public bool isMale; 
 }
