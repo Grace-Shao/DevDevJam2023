@@ -54,7 +54,7 @@ public class WaveSpawner : MonoBehaviour
 
             // Choose a random spawn point
             Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate(customerPrefab.gameObject, randomPoint.position, Quaternion.identity);
+            Instantiate(customerPrefab.gameObject, randomPoint.position, Quaternion.identity, transform.parent);
 
             // only spawn the num we want to spawn
             currentWave.noOfEnemies--;
