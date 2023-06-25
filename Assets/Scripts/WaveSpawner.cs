@@ -35,17 +35,19 @@ public class WaveSpawner : MonoBehaviour
     private float nextSpawnTime; // time it takes to spawn next enem
 
     private bool canSpawn = true; // helps stop spawning for a while, go to the next wave
+    GameObject[] totalEnemies;
 
     private void Start()
     {
         GenerateWave();
+        totalEnemies = GameObject.FindGameObjectsWithTag("Customer");
     }
 
     private void Update()
     {
         SpawnWave();
         // 13:00 keeps track of how many enemies been spawn
-        GameObject[] totalEnemies = GameObject.FindGameObjectsWithTag("Customer");
+        
         // diff
         if (totalEnemies.Length == 0 && !canSpawn) {
             canSpawn = true;
@@ -58,17 +60,17 @@ public class WaveSpawner : MonoBehaviour
         if (canSpawn && nextSpawnTime < Time.time) //Time.time = time passed in seconds, since game start [to check time interval of spawn]
         {
             Transform randomPoint;
-            if (waveCount % 5 == 0)
-            {
-                //Boss Wave
-                DemandRandomFoods(Random.Range(9, 12), bossPrefab.GetComponent<Boss>().FoodRequirements);
-                randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-                bossPrefab.GetComponent<BossMovement>().rushPointObject = CarScript.Instance.gameObject;
-                Instantiate(bossPrefab.gameObject, randomPoint.position, Quaternion.identity, transform.parent);
+            //if (waveCount % 5 == 0)
+            //{
+            //    //Boss Wave
+            //    DemandRandomFoods(Random.Range(9, 12), bossPrefab.GetComponent<Boss>().FoodRequirements);
+            //    randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+            //    bossPrefab.GetComponent<BossMovement>().rushPointObject = CarScript.Instance.gameObject;
+            //    Instantiate(bossPrefab.gameObject, randomPoint.position, Quaternion.identity, transform.parent);
                 
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 // Data Chosen At Random
                 CustomerData randomCustomerType = currentWave.typeOfCustomers[Random.Range(0, currentWave.typeOfCustomers.Count)];
                 FoodData randomFoodChoice = DemandRandomFood();
@@ -80,7 +82,7 @@ public class WaveSpawner : MonoBehaviour
                 // Choose a random spawn point
                 randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
                 Instantiate(customerPrefab.gameObject, randomPoint.position, Quaternion.identity, transform.parent);
-            }
+            //}
 
             // only spawn the num we want to spawn
             currentWave.noOfEnemies--;
@@ -121,12 +123,12 @@ public class WaveSpawner : MonoBehaviour
         {
             wave.foodWeights[i] += wave.foodWeights[i - 1];
         }
-        if (waveCount % 5 == 0)
-        {
-            //Boss Wave
-            wave.waveName = "Boss Wave " + (waveCount / 5);
-            wave.noOfEnemies = (waveCount / 5);
-        }
+        //if (waveCount % 5 == 0)
+        //{
+        //    //Boss Wave
+        //    wave.waveName = "Boss Wave " + (waveCount / 5);
+        //    wave.noOfEnemies = (waveCount / 5);
+        //}
 
         currentWave = wave;
     }
