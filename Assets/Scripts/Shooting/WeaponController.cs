@@ -19,6 +19,8 @@ public class WeaponController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (PauseScript.Instance.IsPaused) return;
+
         AlignToCursor(Input.mousePosition, Camera.main);
 
         if (Input.GetMouseButtonDown(0)) {

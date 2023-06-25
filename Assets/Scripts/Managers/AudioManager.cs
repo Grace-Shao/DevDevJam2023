@@ -51,15 +51,23 @@ public class AudioManager : MonoBehaviour {
             } 
         } Debug.LogWarning("No sound clip named " + name + " was found.");
     }
-
+    public void PauseVolume()
+    {
+        musicSource.volume = musicVolume * 0.4f;
+        sfxSource.volume = 0;
+    }
+    public void UnPauseVolume()
+    {
+        musicSource.volume = musicVolume;
+        sfxSource.volume = sfxVolume;
+    }
     public void SetMusicVolume(float musicVolume) {
         this.musicVolume = musicVolume;
-        musicSource.volume = musicVolume;
+        musicSource.volume = PauseScript.Instance.IsPaused ? musicVolume * 0.4f : musicVolume;
     }
-
     public void SetSFXVolume(float sfxVolume) {
         this.sfxVolume = sfxVolume;
-        sfxSource.volume = sfxVolume;
+        sfxSource.volume = PauseScript.Instance.IsPaused ? 0 : sfxVolume;
     }
 }
 

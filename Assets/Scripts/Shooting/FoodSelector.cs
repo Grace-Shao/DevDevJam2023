@@ -18,6 +18,7 @@ public class FoodSelector : MonoBehaviour {
     }
 
     private void Update() {
+        if (PauseScript.Instance.IsPaused) return;
         float scrollWheelVal = Input.GetAxis("Mouse ScrollWheel");
         if (scrollWheelVal < 0)
         {
