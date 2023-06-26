@@ -545,6 +545,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5549898544405776505, guid: 8d4ea9515a3538a4499840c78c8cb48f, type: 3}
+      propertyPath: musicList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5549898544405776505, guid: 8d4ea9515a3538a4499840c78c8cb48f, type: 3}
+      propertyPath: musicList.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5070d54448bb5714188add50036743cb, type: 3}
+    - target: {fileID: 5549898544405776505, guid: 8d4ea9515a3538a4499840c78c8cb48f, type: 3}
+      propertyPath: musicList.Array.data[3].name
+      value: Boss Theme
+      objectReference: {fileID: 0}
     - target: {fileID: 6452064652970130093, guid: 8d4ea9515a3538a4499840c78c8cb48f, type: 3}
       propertyPath: m_RootOrder
       value: 5

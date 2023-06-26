@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour {
     private void Awake() {
         DontDestroyOnLoad(gameObject);
         if (Instance != null && Instance != this) {
-            Destroy(this);
+            Destroy(gameObject);
         } else {
             Instance = this;
         }
@@ -29,7 +29,6 @@ public class AudioManager : MonoBehaviour {
     void Start() {
         musicSource.volume = musicVolume;
         sfxSource.volume = sfxVolume;
-        PlayMusic("Main Theme");
     }
 
     public void PlayMusic(string name) {

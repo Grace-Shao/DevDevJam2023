@@ -179,6 +179,10 @@ MonoBehaviour:
   musicList:
   - name: Main Theme
     clip: {fileID: 8300000, guid: b03e5a8c345d1e6428799f4df583b5a2, type: 3}
+  - name: Menu Theme
+    clip: {fileID: 8300000, guid: 497e6256f5b7b38488cc7905eb0b2496, type: 3}
+  - name: Lose Theme
+    clip: {fileID: 8300000, guid: 5405400f4c13a9e4d827c636374b58ca, type: 3}
   sfxList:
   - name: MaleP1
     clip: {fileID: 8300000, guid: b2864e8ef9483c3439e8983ce62e9d4e, type: 3}

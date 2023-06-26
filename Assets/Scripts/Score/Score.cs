@@ -32,20 +32,27 @@ public class Score : MonoBehaviour
     }
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
     public int HighScore => highestScore;
     // Update is called once per frame
     void Update()
     {
-        if (_scoreNum > 0) _scoreText.color = Color.green;
-        else if (_scoreNum < 0) _scoreText.color = Color.red;
-        else _scoreText.color = Color.white;
-        _scoreText.text = $"{_scoreNum}";
-        if (_scoreNum > highestScore)
+        if (_scoreText != null)
         {
-            highestScore = _scoreNum;
+            if (_scoreNum > 0) _scoreText.color = Color.green;
+            else if (_scoreNum < 0) _scoreText.color = Color.red;
+            else _scoreText.color = Color.white;
+            _scoreText.text = $"{_scoreNum}";
         }
-        _highScoreText.text = $"{highestScore}";
+        
+        if (_highScoreText != null)
+        {
+            if (_scoreNum > highestScore)
+            {
+                highestScore = _scoreNum;
+            }
+            _highScoreText.text = $"{highestScore}";
+        }   
     }
 }
