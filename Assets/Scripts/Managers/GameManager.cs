@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         m_timetilloverTMP.alpha = 0f;
-        AudioManager.Instance.PlayMusic("Main Theme");
     }
     private void Update()
     {
@@ -38,7 +37,6 @@ public class GameManager : MonoBehaviour
 
         if (Score.Instance.SCORE <= 0)
         {
-            Debug.Log("Should Have loaded by now");
             TransitionManager.Instance.LoadScene("GameOver");
         }
         else

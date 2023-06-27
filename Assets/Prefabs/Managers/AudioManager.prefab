@@ -177,12 +177,18 @@ MonoBehaviour:
   musicSource: {fileID: 1256893527391432195}
   sfxSource: {fileID: 6750481191706519567}
   musicList:
-  - name: Main Theme
-    clip: {fileID: 8300000, guid: b03e5a8c345d1e6428799f4df583b5a2, type: 3}
-  - name: Menu Theme
-    clip: {fileID: 8300000, guid: 497e6256f5b7b38488cc7905eb0b2496, type: 3}
+  - name: Title Intro
+    clip: {fileID: 8300000, guid: fa9290a074cb9e04d9215cd2767783f9, type: 3}
+  - name: Title Loop
+    clip: {fileID: 8300000, guid: 1b9619c860b7f1e4cb5fbd914ba29fd6, type: 3}
+  - name: Theme Intro
+    clip: {fileID: 8300000, guid: 24ab55967d6cc834eac71524d07c4121, type: 3}
+  - name: Theme Loop
+    clip: {fileID: 8300000, guid: e9fe8233b68f90541b65a9a692d70cb9, type: 3}
   - name: Lose Theme
     clip: {fileID: 8300000, guid: 5405400f4c13a9e4d827c636374b58ca, type: 3}
+  - name: Boss Theme
+    clip: {fileID: 8300000, guid: 5070d54448bb5714188add50036743cb, type: 3}
   sfxList:
   - name: MaleP1
     clip: {fileID: 8300000, guid: b2864e8ef9483c3439e8983ce62e9d4e, type: 3}
@@ -216,6 +222,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: ae226807edd7458409e77ac6498062bc, type: 3}
   - name: FemaleT2
     clip: {fileID: 8300000, guid: 22a08251dbf4b514da38ab55f2ac2d11, type: 3}
+  - name: Launch1
+    clip: {fileID: 8300000, guid: 092892c10d6d89d4e8bc995a145bea3b, type: 3}
+  - name: Launch2
+    clip: {fileID: 8300000, guid: cfa1190af53338a4ebef2b6a58ee80d2, type: 3}
+  - name: Launch3
+    clip: {fileID: 8300000, guid: e795e313a165e5a4a86be0e2dab414dd, type: 3}
+  - name: Launch4
+    clip: {fileID: 8300000, guid: d160445e1749a5c4ba8655f12ae85b8f, type: 3}
+  - name: Launch5
+    clip: {fileID: 8300000, guid: 6c2834d95db9a8e43bc9c98ceacb1127, type: 3}
+  - name: Launch6
+    clip: {fileID: 8300000, guid: aecbe9bebbe8f824986c597e07a55cf0, type: 3}
+  - name: Launch7
+    clip: {fileID: 8300000, guid: 01a46c9a76f571e4ba1384c0b8ef0604, type: 3}
+  - name: Launch8
+    clip: {fileID: 8300000, guid: 575dc39a6e659ad47aaa7165e8168e1c, type: 3}
 --- !u!1 &5005216184322745736
 GameObject:
   m_ObjectHideFlags: 0
