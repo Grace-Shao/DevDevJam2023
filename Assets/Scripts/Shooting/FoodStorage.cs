@@ -57,6 +57,8 @@ public class FoodStorage : MonoBehaviour {
         }
 
         activeFood.ammo--;
+        var fxNumber = Random.Range(1, 9);
+        AudioManager.Instance.PlaySFX("Launch" + fxNumber);
         ShootFood(spawnPosition, rotation);
     }
 
@@ -108,8 +110,8 @@ public class FoodStorage : MonoBehaviour {
         this.activeFood = activeFood;
     }
 
-    // Update is called once per frame
-    void Update() {
+    public Food GetActiveFood() {
+        return activeFood;
     }
 }
 

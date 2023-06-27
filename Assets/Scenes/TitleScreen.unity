@@ -315,7 +315,6 @@ GameObject:
   - component: {fileID: 296183439}
   - component: {fileID: 296183438}
   - component: {fileID: 296183437}
-  - component: {fileID: 296183436}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -323,18 +322,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &296183436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296183435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a3f3fad16eb8a43861b4344af2b30a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &296183437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,21 +532,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5549898544405776505, guid: 8d4ea9515a3538a4499840c78c8cb48f, type: 3}
-      propertyPath: musicList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5549898544405776505, guid: 8d4ea9515a3538a4499840c78c8cb48f, type: 3}
-      propertyPath: musicList.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 5070d54448bb5714188add50036743cb, type: 3}
-    - target: {fileID: 5549898544405776505, guid: 8d4ea9515a3538a4499840c78c8cb48f, type: 3}
-      propertyPath: musicList.Array.data[3].name
-      value: Boss Theme
-      objectReference: {fileID: 0}
     - target: {fileID: 6452064652970130093, guid: 8d4ea9515a3538a4499840c78c8cb48f, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6452064652970130093, guid: 8d4ea9515a3538a4499840c78c8cb48f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1674,7 +1649,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: beb4fa7963f93fd4e8756a098183f222, type: 3}
+  m_Sprite: {fileID: 21300000, guid: be881949619231b46b9483fcc7bb8afc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2186,7 +2161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 286159162670077175, guid: 66eabee64cbe5e646998f0cf665bba2b, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 286159162670077175, guid: 66eabee64cbe5e646998f0cf665bba2b, type: 3}
       propertyPath: m_AnchorMax.x

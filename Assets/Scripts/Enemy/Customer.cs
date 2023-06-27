@@ -32,7 +32,7 @@ public class Customer : MonoBehaviour
         lineBank[LineType.FemaleNegative] = new[] { "FemaleN1", "FemaleN2" };
         lineBank[LineType.FemaleTimer] = new[] { "FemaleT1", "FemaleT2" };
 
-        timeLeftTillAngry = m_customerData.timeTillAngry;
+        timeLeftTillAngry = m_customerData.timeTillAngry * Random.Range(0.75f, 1.2f);
     }
 
     public CustomerData CustomerData
@@ -82,7 +82,8 @@ public class Customer : MonoBehaviour
         else
         {
             // Decrement points to pointsystem based on m_foodData.value
-            PlayVoiceline(false);
+            if (foodProj != null) PlayVoiceline(false);
+            else PlayVoiceline();
             m_customerHud.Unsatisfied();
             Score.Instance.SCORE -= m_foodData.value;
         }
@@ -102,7 +103,7 @@ public class Customer : MonoBehaviour
     // Version without argument is for timer;
     protected void PlayVoiceline() {
         var type = m_customerData.isMale ? LineType.MaleTimer : LineType.FemaleTimer;
-        AudioManager.Instance.PlaySFX(lineBank[type][Random.Range(0, lineBank[type].Length)], 0.1f);
+        AudioManager.Instance.PlaySFX(lineBank[type][Random.Range(0, lineBank[type].Length)], 0.15f);
     }
     // Version with bool is for satisfied/unsatisfied
     protected void PlayVoiceline(bool satisfied) {

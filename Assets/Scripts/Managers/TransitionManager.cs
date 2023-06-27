@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class TransitionManager : MonoBehaviour {
 
     public static TransitionManager Instance;
+    public event Action<int> OnSceneChange;
+
     [SerializeField] private List<SceneID> sceneIDMap;
 
     private CanvasGroup canvas;
@@ -25,6 +28,12 @@ public class TransitionManager : MonoBehaviour {
         canvas = GetComponentInChildren<CanvasGroup>();
         canvas.blocksRaycasts = false;
         FadeIn();
+        StartCoroutine(IAwaitManager());
+    }
+
+    IEnumerator IAwaitManager() {
+        while (OnSceneChange == null) yield return null;
+        OnSceneChange?.Invoke(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update() {
@@ -41,6 +50,8 @@ public class TransitionManager : MonoBehaviour {
 
     IEnumerator ILoadScene(int sceneID, bool fade = true) {
         if (fade) {
+            if (SceneManager.GetActiveScene().buildIndex != 4
+                && !(SceneManager.GetActiveScene().buildIndex == 1 && sceneID == 4)) AudioManager.Instance.FadeMusic();
             FadeOut();
             while (canvas.alpha != targetAlpha) yield return null;
             var delay = 0.25f;
@@ -48,7 +59,7 @@ public class TransitionManager : MonoBehaviour {
         } yield return SceneManager.LoadSceneAsync(sceneID);
         if (fade) {
             FadeIn();
-        }
+        } OnSceneChange?.Invoke(sceneID);
     }
 
     public void FadeOut(bool darken = false) {
