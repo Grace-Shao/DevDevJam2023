@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5689677708540142973}
   m_LocalRotation: {x: -0, y: -0, z: -0.7005403, w: 0.71361285}
-  m_LocalPosition: {x: 1.239936, y: 0.014924765, z: 0.06825507}
+  m_LocalPosition: {x: 1.246, y: 0.062, z: 0.06825507}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c7a1b9721fcb6394fa1bd0c0973ed180, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -132,27 +132,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   genericFood: {fileID: 4603483299692672845, guid: f6332673817e91f40ae866b83bf5d715, type: 3}
-  projectileSpeed: 250
+  projectileSpeed: 425
   foodList:
-  - foodData: {fileID: 0}
-    ammo: 0
-    cooldown: 0
+  - foodData: {fileID: 11400000, guid: 8185f59eb31b27d49b3257be23998904, type: 2}
+    ammo: 4
+    cooldown: 0.8
     currCooldown: 0
-  - foodData: {fileID: 0}
-    ammo: 0
-    cooldown: 0
+  - foodData: {fileID: 11400000, guid: ff2763c0994b8934daa064a6a726ef6e, type: 2}
+    ammo: 4
+    cooldown: 0.8
     currCooldown: 0
-  - foodData: {fileID: 0}
-    ammo: 0
-    cooldown: 0
+  - foodData: {fileID: 11400000, guid: 6d036cb3857445a478507adfe3db2860, type: 2}
+    ammo: 4
+    cooldown: 0.8
     currCooldown: 0
-  - foodData: {fileID: 0}
-    ammo: 0
-    cooldown: 0
+  - foodData: {fileID: 11400000, guid: 7628fa50c957b7f499ea08d9462269e6, type: 2}
+    ammo: 4
+    cooldown: 0.8
     currCooldown: 0
-  - foodData: {fileID: 0}
-    ammo: 0
-    cooldown: 0
+  - foodData: {fileID: 11400000, guid: 164ac674845ac22449a796bd2d900dcc, type: 2}
+    ammo: 4
+    cooldown: 0.8
     currCooldown: 0
 --- !u!114 &5689677709996507666
 MonoBehaviour:

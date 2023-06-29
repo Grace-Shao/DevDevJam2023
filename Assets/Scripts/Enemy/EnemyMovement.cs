@@ -5,22 +5,24 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour {
 
     [SerializeField] private float moveSpeed = 1f;
-    private SpaceBounds bounds;
+    private SpaceDimensions dimensions;
     private Vector3 roamingPoint;
+    private Customer customerScript;
 
     private Transform customerSprite;
     private float timer = 3;
     private float yVariation = 0.075f;
-    private bool isMoving;
+    private bool started;
 
     // Start is called before the first frame update
     void Start() {
+        customerScript = GetComponentInChildren<Customer>();
         customerSprite = GetComponentInChildren<SpriteRenderer>().transform;
-        bounds = transform.parent.GetComponentInChildren<GenericSpace>().GetBounds();
-        ChangeRoamingPoint();
+        dimensions = transform.parent.GetComponentInChildren<GenericSpace>().GetDimensions();
     }
 
     void Update() {
+        if (!started) { ChangeRoamingPoint(); started = true; }
         transform.position = Vector3.MoveTowards(transform.position, roamingPoint, moveSpeed / 100f);
         if (timer <= 0) { ChangeRoamingPoint(); timer = Random.Range(1f, 3f); } 
         else timer -= Time.deltaTime;
@@ -29,6 +31,11 @@ public class EnemyMovement : MonoBehaviour {
     }
 
     private void ChangeRoamingPoint() {
-        roamingPoint = new Vector3(Random.Range(bounds.leftX, bounds.rightX), Random.Range(bounds.bottomY, bounds.topY), transform.position.z);
+        var timerPercent = customerScript ? 1 - customerScript.TimeLeftTillAngry / customerScript.CustomerData.timeTillAngry : 1;
+        roamingPoint = new Vector3(dimensions.origin.x + Random.Range(dimensions.width * 0.15f * timerPercent,
+                                                                      dimensions.width - dimensions.width * 0.15f * timerPercent),
+                                   dimensions.origin.y + Random.Range(dimensions.height * 0.85f - dimensions.height * 0.85f,
+                                                                      dimensions.height - dimensions.height * 0.65f * timerPercent),
+                                                                      transform.position.z);
     }
 }

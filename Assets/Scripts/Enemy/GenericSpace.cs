@@ -17,19 +17,17 @@ public class GenericSpace : MonoBehaviour {
                         new Vector3(transform.position.x + width, transform.position.y + height, transform.position.z));
     }
 
-    public SpaceBounds GetBounds() {
-        var bounds = new SpaceBounds();
-        bounds.leftX = transform.position.x;
-        bounds.rightX = transform.position.x + width;
-        bounds.bottomY = transform.position.y;
-        bounds.topY = transform.position.y + height;
-        return bounds;
+    public SpaceDimensions GetDimensions() {
+        var dimensions = new SpaceDimensions();
+        dimensions.origin = transform.position;
+        dimensions.width = width;
+        dimensions.height = height;
+        return dimensions;
     }
 }
 
-public class SpaceBounds {
-    public float leftX;
-    public float rightX;
-    public float bottomY;
-    public float topY;
+public class SpaceDimensions {
+    public Vector2 origin;
+    public float width;
+    public float height;
 }
