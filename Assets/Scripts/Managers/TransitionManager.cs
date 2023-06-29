@@ -28,18 +28,15 @@ public class TransitionManager : MonoBehaviour {
         canvas = GetComponentInChildren<CanvasGroup>();
         canvas.blocksRaycasts = false;
         FadeIn();
-        StartCoroutine(IAwaitManager());
-    }
-
-    IEnumerator IAwaitManager() {
-        while (OnSceneChange == null) yield return null;
-        OnSceneChange?.Invoke(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update() {
         if (canvas.alpha != targetAlpha) {
             if (canvas.alpha < targetAlpha) canvas.alpha = Mathf.Min(canvas.alpha + Time.deltaTime * transitionSpeed, targetAlpha);
             else canvas.alpha = Mathf.Max(canvas.alpha - Time.deltaTime * transitionSpeed, targetAlpha);
+        }
+        if (Input.GetKeyDown("t")) {
+            SceneManager.LoadScene(FindSceneID("GameOver"));
         }
     }
 

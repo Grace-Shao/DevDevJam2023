@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,17 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public event Action OnEndingSceneLoad;
+
+    public static GameManager Instance;
+
     private bool inDangerZone = false;
     [SerializeField] private TextMeshProUGUI m_timetilloverTMP;
+
+    private void Awake() {
+        Instance = this;
+    }
+
     private void Start()
     {
         m_timetilloverTMP.alpha = 0f;
@@ -37,6 +47,7 @@ public class GameManager : MonoBehaviour
 
         if (Score.Instance.SCORE <= 0)
         {
+            OnEndingSceneLoad?.Invoke();
             TransitionManager.Instance.LoadScene("GameOver");
         }
         else

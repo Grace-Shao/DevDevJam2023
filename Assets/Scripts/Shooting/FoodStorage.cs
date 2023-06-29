@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ public class FoodStorage : MonoBehaviour {
         }
     }
     #endregion
+    public event Action OnShootFood;
+    public event Action<FoodData> OnFoodReload;
 
     [SerializeField] private GameObject genericFood;
     [SerializeField] private float projectileSpeed;
@@ -57,7 +60,8 @@ public class FoodStorage : MonoBehaviour {
         }
 
         activeFood.ammo--;
-        var fxNumber = Random.Range(1, 9);
+        OnShootFood?.Invoke();
+        var fxNumber = UnityEngine.Random.Range(1, 9);
         AudioManager.Instance.PlaySFX("Launch" + fxNumber);
         ShootFood(spawnPosition, rotation);
     }
@@ -67,6 +71,7 @@ public class FoodStorage : MonoBehaviour {
         if (activeFood.currCooldown <= 0)
         {
             activeFood.currCooldown = activeFood.cooldown;
+            OnFoodReload?.Invoke(activeFood.foodData);
             StartCoroutine(ReloadFood(activeFood));
         }
     }

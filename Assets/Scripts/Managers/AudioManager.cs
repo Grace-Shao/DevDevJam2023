@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour {
 
@@ -30,11 +31,12 @@ public class AudioManager : MonoBehaviour {
     void Start() {
         musicSource.volume = musicVolume;
         sfxSource.volume = sfxVolume;
-        TransitionManager.Instance.OnSceneChange += Instance_OnSceneChange;
+        TransitionManager.Instance.OnSceneChange += AudioManager_OnSceneChange;
+        PlayMusic("Title Intro", "Title Loop");
     }
 
-    private void Instance_OnSceneChange(int sceneID) {
-        if (sceneID != 4) StopAllCoroutines();
+    private void AudioManager_OnSceneChange(int sceneID) {
+        if (sceneID != 4 && (sceneID == 0 && musicSource.clip != musicList[0].clip)) StopAllCoroutines();
         musicSource.volume = musicVolume;
         switch (sceneID) {
             case 0:
@@ -43,9 +45,6 @@ public class AudioManager : MonoBehaviour {
                 break;
             case 2:
                 PlayMusic("Theme Intro", "Theme Loop");
-                break;
-            case 3:
-                PlayMusic("Lose");
                 break;
         }
     }

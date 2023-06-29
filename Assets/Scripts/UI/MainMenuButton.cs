@@ -45,6 +45,5 @@ public class MainMenuButton : MonoBehaviour
 
     public void Back() {
         TransitionManager.Instance.LoadScene("Title");
-        print("hello");
     }
 }

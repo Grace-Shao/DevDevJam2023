@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class Customer : MonoBehaviour
         lineBank[LineType.FemaleNegative] = new[] { "FemaleN1", "FemaleN2" };
         lineBank[LineType.FemaleTimer] = new[] { "FemaleT1", "FemaleT2" };
 
-        timeLeftTillAngry = m_customerData.timeTillAngry * Random.Range(0.75f, 1.2f);
+        timeLeftTillAngry = m_customerData.timeTillAngry * UnityEngine.Random.Range(0.75f, 1.2f);
     }
 
     public CustomerData CustomerData
@@ -49,7 +50,7 @@ public class Customer : MonoBehaviour
     private void Update()
     {
         m_customerRenderer.sprite = m_customerData.customerSprite;
-        timeLeftTillAngry -= Time.deltaTime * 2;
+        timeLeftTillAngry -= Time.deltaTime * 1.85f;
 
         if (timeLeftTillAngry <= 0 && !reacted)
         {
@@ -83,7 +84,10 @@ public class Customer : MonoBehaviour
         {
             // Decrement points to pointsystem based on m_foodData.value
             if (foodProj != null) PlayVoiceline(false);
-            else PlayVoiceline();
+            else {
+                PlayVoiceline();
+                foreach (Collider2D comp in GetComponents<Collider2D>()) Destroy(comp);
+            }
             m_customerHud.Unsatisfied();
             Score.Instance.SCORE -= m_foodData.value;
         }
@@ -102,16 +106,18 @@ public class Customer : MonoBehaviour
 
     // Version without argument is for timer;
     protected void PlayVoiceline() {
+        HighscoreLogic.Instance.CustomerFeedReaction();
         var type = m_customerData.isMale ? LineType.MaleTimer : LineType.FemaleTimer;
-        AudioManager.Instance.PlaySFX(lineBank[type][Random.Range(0, lineBank[type].Length)], 0.15f);
+        AudioManager.Instance.PlaySFX(lineBank[type][UnityEngine.Random.Range(0, lineBank[type].Length)], 0.15f);
     }
     // Version with bool is for satisfied/unsatisfied
     protected void PlayVoiceline(bool satisfied) {
+        HighscoreLogic.Instance.CustomerFeedReaction(satisfied);
         var type = LineType.MalePositive;
         if (m_customerData.isMale) {
             type = satisfied ? LineType.MalePositive : LineType.MaleNegative;
         } else {
             type = satisfied ? LineType.FemalePositive : LineType.FemaleNegative;
-        } AudioManager.Instance.PlaySFX(lineBank[type][Random.Range(0, lineBank[type].Length)], 0.1f);
+        } AudioManager.Instance.PlaySFX(lineBank[type][UnityEngine.Random.Range(0, lineBank[type].Length)], 0.1f);
     }
 }

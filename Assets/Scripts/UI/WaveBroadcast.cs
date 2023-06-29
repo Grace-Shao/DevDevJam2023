@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class WaveBroadcast : MonoBehaviour
         }  
     }
     #endregion
+
+    public event Action OnWaveBroadcasted;
     private TextMeshProUGUI m_TextMeshProUGUI;
 
     private float targetAlpha = 1f;
@@ -32,6 +35,7 @@ public class WaveBroadcast : MonoBehaviour
 
     public void BroadcastWave(string waveString)
     {
+        OnWaveBroadcasted?.Invoke();
         if (m_TextMeshProUGUI) {
             m_TextMeshProUGUI.text = waveString;
             StartCoroutine(FancyDisplay());

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a9b410668cb6141a60c3edeb8bf1af, type: 3}
   m_Name: Taco
   m_EditorClassIdentifier: 
-  name: 
-  value: 0
+  name: Taco
+  value: 8
   foodSprite: {fileID: 21300000, guid: 5411b4419c0aa194ea9ff9cdb4d38009, type: 3}

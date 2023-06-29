@@ -30,6 +30,8 @@ public class CustomerHud : MonoBehaviour
 
     private void Update() {
         angerBar.fillAmount = attachedCustomer.TimeLeftTillAngry / attachedCustomer.CustomerData.timeTillAngry;
+        angerBar.color = angerBar.fillAmount < 0.5 ? Color.Lerp(Color.red, Color.yellow, angerBar.fillAmount * 2f)
+                                                     : Color.Lerp(Color.yellow, Color.green, (angerBar.fillAmount - 0.5f) * 2f);
         switch (state) {
             case State.Downscale:
                 foodImage.transform.localScale = Vector3.MoveTowards(foodImage.transform.localScale, Vector3.zero, scaleSpeed);

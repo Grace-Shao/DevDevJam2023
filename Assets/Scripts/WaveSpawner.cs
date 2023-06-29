@@ -102,7 +102,7 @@ public class WaveSpawner : MonoBehaviour
         waveCount++;
         var wave = new Wave();
         wave.waveName = "Wave " + waveCount;
-        enemiesPerWave += waveCount < 3 ? 3 : waveCount < 6 ? 2 : 1;
+        enemiesPerWave += waveCount <= 1 ? 3 : waveCount <= 4 ? 2 : 1;
         wave.noOfEnemies = enemiesPerWave;
         spawnMultiplier += 0.1f;
         wave.spawnInterval = Mathf.Max(0.5f, 1.5f - 1f * spawnMultiplier);
@@ -130,7 +130,7 @@ public class WaveSpawner : MonoBehaviour
         //    wave.waveName = "Boss Wave " + (waveCount / 5);
         //    wave.noOfEnemies = (waveCount / 5);
         //}
-        nextWaveWait = wave.noOfEnemies * 0.65f;
+        nextWaveWait = wave.noOfEnemies * 0.85f;
         currentWave = wave;
         if (waveCount > 1) WaveBroadcast.Instance.BroadcastWave(currentWave.waveName);
     }

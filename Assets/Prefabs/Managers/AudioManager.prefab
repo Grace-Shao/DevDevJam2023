@@ -185,6 +185,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 24ab55967d6cc834eac71524d07c4121, type: 3}
   - name: Theme Loop
     clip: {fileID: 8300000, guid: e9fe8233b68f90541b65a9a692d70cb9, type: 3}
+  - name: Win Theme
+    clip: {fileID: 8300000, guid: 22feebd05fe766d418fd0dd769e3b283, type: 3}
   - name: Lose Theme
     clip: {fileID: 8300000, guid: 5405400f4c13a9e4d827c636374b58ca, type: 3}
   - name: Boss Theme
